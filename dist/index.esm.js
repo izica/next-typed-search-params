@@ -1,5 +1,5 @@
 /*!
- * next-typed-search-params v1.0.0
+ * next-typed-search-params v1.0.2
  * (c) undefined
  * Released under the MIT License.
  */
@@ -103,10 +103,18 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
 
 var setSearchParams = function (entry) {
     var href = "".concat(window.location.pathname, "?") + stringifySearchParams(entry);
-    console.log(href);
     history.replaceState(__assign(__assign({}, history.state), { as: href, new: href }), "", href);
     window.dispatchEvent(new Event('setSearchParams'));
 };
 
-export { setSearchParams, stringifySearchParams, useSearchParams };
+function configure(options) {
+    if (options["arrayFormat"]) {
+        settings.arrayFormat = options["arrayFormat"];
+    }
+    if (options["arrayFormatSeparator"]) {
+        settings.arrayFormatSeparator = options["arrayFormatSeparator"];
+    }
+}
+
+export { configure, setSearchParams, stringifySearchParams, useSearchParams };
 //# sourceMappingURL=index.esm.js.map
