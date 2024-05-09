@@ -1,0 +1,52 @@
+{
+  "name": "next-typed-search-params",
+  "version": "1.0.0",
+  "repository": "https://github.com/izica/next-typed-search-params.git",
+  "author": "izica <artemiztomska@gmail.com>",
+  "license": "MIT",
+
+  "scripts": {
+    "doc": "typedoc src/index.ts",
+    "test": "jest",
+    "build": "rollup --config ./rollup.config.mjs"
+  },
+
+  "cdn": "dist/index.umd.js",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "unpkg": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "jsdelivr": "dist/index.umd.js",
+  "umd:main": "dist/index.umd.js",
+
+  "files": [
+    "dist/",
+    "types/"
+  ],
+
+  "exports": {
+    ".": [
+      {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs",
+        "default": "./dist/index.js"
+      },
+      "./dist/index.js"
+    ]
+  },
+
+  "dependencies": {
+    "next": "^13|^14",
+    "query-string": "^9.0.0",
+    "react": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "rollup": "^4.17.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "typescript": "^5.4.5"
+  }
+}
