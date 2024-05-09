@@ -1,6 +1,6 @@
 {
   "name": "next-typed-search-params",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "https://github.com/izica/next-typed-search-params.git",
   "author": "izica <artemiztomska@gmail.com>",
   "license": "MIT",
@@ -36,7 +36,7 @@
   },
 
   "dependencies": {
-    "next": "^13|^14",
+    "next": "^13",
     "query-string": "^9.0.0",
     "react": "^18.3.1",
     "zod": "^3.23.8"
