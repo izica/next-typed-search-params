@@ -6,7 +6,14 @@ Discover Next.js typesafe and shallow search params for your project.
 * Typesafe, supports type hints
 * Shallow routing support
 * Stateful
-* 
+* Supports customizable url search string format, see: [query-string](https://www.npmjs.com/package/query-string#arrayformat)
+  * `foo[]=1&foo[]=2&foo[]=3`
+  * `foo[0]=1&foo[1]=2&foo[3]=3`
+  * `foo=1,2,3`
+  * `foo=1|2|3`
+  * `foo[]=1|2|3&bar=fluffy&baz[]=4`
+  * `foo=1&foo=2&foo=3`
+  * etc
 
 ## What's inside
 * [zod](https://www.npmjs.com/package/zod)
@@ -35,9 +42,7 @@ Options
 * [arrayFormat](https://www.npmjs.com/package/query-string#arrayformat) - optional, "bracket" by default
 * [arrayFormatSeparator](https://www.npmjs.com/package/query-string#arrayformatseparator) - optional, "," by default
 
-
 ### Usage
-
 ```typescript jsx
 import { useSearchParams, setSearchParams } from "next-typed-search-params";
 
@@ -58,3 +63,6 @@ export const Component = ({}: PropsType) => {
     return (<button onClick={handleClick}>click {searchParams.value}</button>);
 };
 ```
+
+#### Error handling
+If the Zod parse fails, the search parameter will be set as undefined.
