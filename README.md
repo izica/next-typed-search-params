@@ -32,13 +32,13 @@ yarn add next-typed-search-params
 At top `client` component:
 
 ```typescript
+'use client'
 import { configure } from "next-typed-search-params";
 
 configure({ arrayFormat: "bracket-separator" })
 ```
 
-#### Configuring options
-Options
+#### Options
 * [arrayFormat](https://www.npmjs.com/package/query-string#arrayformat) - optional, "bracket" by default
 * [arrayFormatSeparator](https://www.npmjs.com/package/query-string#arrayformatseparator) - optional, "," by default
 
