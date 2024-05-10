@@ -6,7 +6,7 @@ Discover Next.js typesafe and shallow search params for your project.
 * Typesafe, supports type hints
 * Shallow routing support
 * Stateful
-* Supports customizable url search string format, see: [query-string](https://www.npmjs.com/package/query-string#arrayformat)
+* Supports customizable search string format, see: [query-string](https://www.npmjs.com/package/query-string#arrayformat)
   * `foo[]=1&foo[]=2&foo[]=3`
   * `foo[0]=1&foo[1]=2&foo[3]=3`
   * `foo=1,2,3`
