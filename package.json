@@ -4,6 +4,30 @@
   "repository": "https://github.com/izica/next-typed-search-params.git",
   "author": "izica <artemiztomska@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "next",
+    "nextjs",
+    "react",
+    "reactjs,
+    "nextjs13",
+    "nextjs14",
+    "nextjs router",
+    "nextjs-router",
+    "next-router"
+    "router",
+    "search-params",
+    "search params",
+    "shallow",
+    "search",
+    "params",
+    "zod",
+    "query string",
+    "query"
+    "query-string",
+    "typescript"
+    "types"
+    "typed"
+  ],
   "scripts": {
     "doc": "typedoc src/index.ts",
     "test": "jest",
