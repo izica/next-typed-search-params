@@ -13,7 +13,7 @@
     "nextjs14",
     "nextjs router",
     "nextjs-router",
-    "next-router"
+    "next-router",
     "router",
     "search-params",
     "search params",
@@ -22,10 +22,10 @@
     "params",
     "zod",
     "query string",
-    "query"
+    "query",
     "query-string",
-    "typescript"
-    "types"
+    "typescript",
+    "types",
     "typed"
   ],
   "scripts": {
