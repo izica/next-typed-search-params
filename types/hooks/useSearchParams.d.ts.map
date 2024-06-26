@@ -1,1 +1,1 @@
-{"version":3,"file":"useSearchParams.d.ts","sourceRoot":"","sources":["../../src/hooks/useSearchParams.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,KAAK,CAAC;AAMxB,eAAO,MAAM,eAAe,wEAAmD,CAAC,GAAG,EAAE,QAAQ,KAAK,CAAC,sJAuBlG,CAAA"}
+{"version":3,"file":"useSearchParams.d.ts","sourceRoot":"","sources":["../../src/hooks/useSearchParams.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,KAAK,CAAC;AAMxB,eAAO,MAAM,eAAe,GAAI,CAAC,SAAS,MAAM,CAAC,MAAM,EAAE,CAAC,CAAC,OAAO,CAAC,UAAY,CAAC,GAAG,EAAE,OAAO,CAAC,KAAK,CAAC,KAsBhF,CAAC,CAAC,KAAK,uQACzB,CAAA"}

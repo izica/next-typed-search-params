@@ -1,10 +1,12 @@
 /*!
- * next-typed-search-params v1.0.2
+ * next-typed-search-params v1.0.4
  * (c) undefined
  * Released under the MIT License.
  */
 
 'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 var zod = require('zod');
 var navigation = require('next/navigation');
@@ -118,8 +120,12 @@ function configure(options) {
     }
 }
 
-exports.configure = configure;
-exports.setSearchParams = setSearchParams;
-exports.stringifySearchParams = stringifySearchParams;
-exports.useSearchParams = useSearchParams;
+var index = {
+    useSearchParams: useSearchParams,
+    stringifySearchParams: stringifySearchParams,
+    setSearchParams: setSearchParams,
+    configure: configure
+};
+
+exports.default = index;
 //# sourceMappingURL=index.js.map

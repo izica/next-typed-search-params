@@ -1,5 +1,5 @@
 /*!
- * next-typed-search-params v1.0.2
+ * next-typed-search-params v1.0.4
  * (c) undefined
  * Released under the MIT License.
  */
@@ -117,10 +117,16 @@
         }
     }
 
-    exports.configure = configure;
-    exports.setSearchParams = setSearchParams;
-    exports.stringifySearchParams = stringifySearchParams;
-    exports.useSearchParams = useSearchParams;
+    var index = {
+        useSearchParams: useSearchParams,
+        stringifySearchParams: stringifySearchParams,
+        setSearchParams: setSearchParams,
+        configure: configure
+    };
+
+    exports.default = index;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 //# sourceMappingURL=index.umd.js.map

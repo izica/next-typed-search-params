@@ -1,5 +1,5 @@
 /*!
- * next-typed-search-params v1.0.2
+ * next-typed-search-params v1.0.4
  * (c) undefined
  * Released under the MIT License.
  */
@@ -116,5 +116,12 @@ function configure(options) {
     }
 }
 
-export { configure, setSearchParams, stringifySearchParams, useSearchParams };
+var index = {
+    useSearchParams: useSearchParams,
+    stringifySearchParams: stringifySearchParams,
+    setSearchParams: setSearchParams,
+    configure: configure
+};
+
+export { index as default };
 //# sourceMappingURL=index.esm.js.map
