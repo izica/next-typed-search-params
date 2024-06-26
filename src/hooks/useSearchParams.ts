@@ -27,5 +27,5 @@ export const useSearchParams = <T extends Record<string, z.ZodType>, >(config: (
         return () => window.removeEventListener('setSearchParams', handler);
     }, [entry]);
 
-    return [data as z.infer<typeof schema>, setSearchParams];
+    return [data, setSearchParams] as [z.infer<typeof schema>, typeof setSearchParams];
 }
