@@ -49,8 +49,8 @@ import { useSearchParams } from "next-typed-search-params";
 export const Component = ({}: PropsType) => {
     const [searchParams, setSearchParams] = useSearchParams((z) => ({
         productId: z.coerce.number().array(),
-        value: z.coerce.number(),
-        date: z.coerce.string()
+        value: z.coerce.number().default(0),
+        date: z.coerce.string().optional()
     }));
 
     const handleClick = () => {
