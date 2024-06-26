@@ -1,28 +1,15 @@
 /*!
- * next-typed-search-params v1.0.4
+ * next-typed-search-params v1.0.9
  * (c) undefined
  * Released under the MIT License.
  */
 
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var zod = require('zod');
+var queryString = require('query-string');
 var navigation = require('next/navigation');
 var react = require('react');
-var queryString = require('query-string');
-
-var parseValue = function (value, schema) {
-    if (value === undefined || schema === undefined) {
-        return undefined;
-    }
-    var _a = schema.safeParse(value), success = _a.success, data = _a.data;
-    if (success) {
-        return data;
-    }
-    return undefined;
-};
+var zod = require('zod');
 
 var Settings = /** @class */ (function () {
     function Settings() {
@@ -33,44 +20,14 @@ var Settings = /** @class */ (function () {
 }());
 var settings = new Settings();
 
-var parseSearchParams = function (schema, searchParamsString) {
-    var parsedSearchParams = queryString.parse(decodeURIComponent(searchParamsString), {
-        arrayFormat: settings.arrayFormat,
-    });
-    var result = {};
-    for (var key in schema) {
-        result[key] = parseValue(parsedSearchParams[key], schema[key] || undefined);
+function configure(options) {
+    if (options["arrayFormat"]) {
+        settings.arrayFormat = options["arrayFormat"];
     }
-    return result;
-};
-
-var useSearchParams = function (config) {
-    var schema = react.useMemo(function () { return zod.z.object(config(zod.z)); }, []);
-    var entry = react.useMemo(function () { return config(zod.z); }, []);
-    var searchParams = navigation.useSearchParams();
-    var _a = react.useState(parseSearchParams(entry, searchParams.toString())), data = _a[0], setData = _a[1];
-    react.useEffect(function () {
-        setData(parseSearchParams(entry, searchParams.toString()));
-    }, [searchParams, schema, entry]);
-    react.useEffect(function () {
-        var handler = function () {
-            setData(parseSearchParams(entry, window.location.search.substring(1)));
-        };
-        window.addEventListener('setSearchParams', handler);
-        return function () { return window.removeEventListener('setSearchParams', handler); };
-    }, [entry]);
-    return data;
-};
-
-var stringifySearchParams = function (searchParams) {
-    return queryString.stringify(searchParams, {
-        arrayFormat: settings.arrayFormat,
-        arrayFormatSeparator: ',',
-        encode: false,
-        skipNull: true,
-        skipEmptyString: true,
-    });
-};
+    if (options["arrayFormatSeparator"]) {
+        settings.arrayFormatSeparator = options["arrayFormatSeparator"];
+    }
+}
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -105,27 +62,64 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
     return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
 };
 
+var stringifySearchParams = function (searchParams) {
+    return queryString.stringify(searchParams, {
+        arrayFormat: settings.arrayFormat,
+        arrayFormatSeparator: ',',
+        encode: false,
+        skipNull: true,
+        skipEmptyString: true,
+    });
+};
+
 var setSearchParams = function (entry) {
     var href = "".concat(window.location.pathname, "?") + stringifySearchParams(entry);
     history.replaceState(__assign(__assign({}, history.state), { as: href, new: href }), "", href);
     window.dispatchEvent(new Event('setSearchParams'));
 };
 
-function configure(options) {
-    if (options["arrayFormat"]) {
-        settings.arrayFormat = options["arrayFormat"];
+var parseValue = function (value, schema) {
+    if (schema === undefined) {
+        return undefined;
     }
-    if (options["arrayFormatSeparator"]) {
-        settings.arrayFormatSeparator = options["arrayFormatSeparator"];
+    var _a = schema.safeParse(value), success = _a.success, data = _a.data;
+    if (success) {
+        return data;
     }
-}
-
-var index = {
-    useSearchParams: useSearchParams,
-    stringifySearchParams: stringifySearchParams,
-    setSearchParams: setSearchParams,
-    configure: configure
+    return undefined;
 };
 
-exports.default = index;
+var parseSearchParams = function (schema, searchParamsString) {
+    var parsedSearchParams = queryString.parse(decodeURIComponent(searchParamsString), {
+        arrayFormat: settings.arrayFormat,
+    });
+    var result = {};
+    for (var key in schema) {
+        result[key] = parseValue(parsedSearchParams[key], schema[key] || undefined);
+    }
+    return result;
+};
+
+var useSearchParams = function (config) {
+    var schema = react.useMemo(function () { return zod.z.object(config(zod.z)); }, []);
+    var entry = react.useMemo(function () { return config(zod.z); }, []);
+    var searchParams = navigation.useSearchParams();
+    var _a = react.useState(parseSearchParams(entry, searchParams.toString())), data = _a[0], setData = _a[1];
+    react.useEffect(function () {
+        setData(parseSearchParams(entry, searchParams.toString()));
+    }, [searchParams, schema, entry]);
+    react.useEffect(function () {
+        var handler = function () {
+            setData(parseSearchParams(entry, window.location.search.substring(1)));
+        };
+        window.addEventListener('setSearchParams', handler);
+        return function () { return window.removeEventListener('setSearchParams', handler); };
+    }, [entry]);
+    return [data, setSearchParams];
+};
+
+exports.configure = configure;
+exports.setSearchParams = setSearchParams;
+exports.stringifySearchParams = stringifySearchParams;
+exports.useSearchParams = useSearchParams;
 //# sourceMappingURL=index.js.map

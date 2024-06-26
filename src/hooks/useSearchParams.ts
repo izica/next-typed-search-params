@@ -1,8 +1,9 @@
-import { z } from "zod";
 import { useSearchParams as useSearchParamsNext } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { z } from "zod";
 
 import { parseSearchParams } from "../helpers/parseSearchParams";
+import { setSearchParams } from "../helpers/setSearchParams";
 
 export const useSearchParams = <T extends Record<string, z.ZodType>, >(config: (zod: typeof z) => T) => {
     const schema = useMemo(() => z.object(config(z)), []);
@@ -26,5 +27,5 @@ export const useSearchParams = <T extends Record<string, z.ZodType>, >(config: (
         return () => window.removeEventListener('setSearchParams', handler);
     }, [entry]);
 
-    return data as z.infer<typeof schema>;
+    return [data as z.infer<typeof schema>, setSearchParams];
 }

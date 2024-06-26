@@ -22,7 +22,7 @@ Discover Next.js typesafe and shallow search params for your project.
 ## Get started
 ### Installation
 ```bash
-npm install next-typed-search-params 
+npm install next-typed-search-params
 ```
 ```bash
 yarn add next-typed-search-params
@@ -44,10 +44,10 @@ configure({ arrayFormat: "bracket-separator" })
 
 ### Usage
 ```typescript jsx
-import { useSearchParams, setSearchParams } from "next-typed-search-params";
+import { useSearchParams } from "next-typed-search-params";
 
 export const Component = ({}: PropsType) => {
-    const searchParams = useSearchParams((z) => ({
+    const [searchParams, setSearchParams] = useSearchParams((z) => ({
         productId: z.coerce.number().array(),
         value: z.coerce.number(),
         date: z.coerce.string()

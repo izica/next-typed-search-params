@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const parseValue = (value: any, schema: z.ZodType | undefined) => {
-    if (value === undefined || schema === undefined) {
+    if (schema === undefined) {
         return undefined;
     }
     const { success, data } = schema.safeParse(value);
